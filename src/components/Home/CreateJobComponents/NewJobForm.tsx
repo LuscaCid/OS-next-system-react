@@ -1,6 +1,9 @@
 
 import { CaseSensitive, Coins, Smartphone, PenBox, PenLine} from 'lucide-react'
 import Input from "../CreateJobComponents/Input";
+import {useForm} from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export function NewJobForm () {
 

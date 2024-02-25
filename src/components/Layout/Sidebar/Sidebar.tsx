@@ -21,7 +21,7 @@ export function Sidebar () {
                   Home
                 </li>
                 <li className="cursor-pointer bg-transparent rounded-md p-1 w-full hover:bg-zinc-200 transition duration-200 dark:hover:bg-zinc-800 ">
-                  <NavLink to='/costumer'/>
+                  <NavLink to='/user'/>
                   Costumers
                 </li>
                 <li className="cursor-pointer bg-transparent rounded-md p-1 w-full hover:bg-zinc-200 transition duration-200 dark:hover:bg-zinc-800 ">

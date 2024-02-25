@@ -12,13 +12,18 @@ export function HistoryFetchAndRendering({query} : Props) {
   const {isLoading, data : JobsHistory, isError } = useQuery({
     queryFn : () => fetchHistory(query),
     queryKey : ["history", query],
-    retry : 2
+    retry : 2,
+    staleTime : 1000 * 60 * 10
   })
 
   async function fetchHistory (query : string) {
+    let data = {} as IHistoryData [] ; 
+    console.log(JobsHistory)
+    
     await new Promise(resolver => setTimeout(resolver, 2000))
     const response = await fetch('http://localhost:3000/orders')
-    let data : IHistoryData [] = await response.json()
+    data = await response.json()
+  
     if(query) {
       console.log(query)
       data = data.filter ((element : IHistoryData) => {

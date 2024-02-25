@@ -1,11 +1,32 @@
 
-import { CaseSensitive, Coins, Smartphone, PenBox, PenLine} from 'lucide-react'
+import { CaseSensitive, Coins, Smartphone, PenBox, PenLine, CalendarCheck} from 'lucide-react'
 import Input from "../CreateJobComponents/Input";
-import {useForm} from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 
+
+const NewJobFormSchema = z.object({
+  device : z.string(),
+  price : z.number(),
+  date : z.date(),
+  description : z.string(),
+
+})
+
+type NewJobFormSchemaType = z.infer<typeof NewJobFormSchema>
+
 export function NewJobForm () {
+
+  const {handleSubmit, formState : { isSubmitting }} = useForm<NewJobFormSchemaType>({
+    resolver : zodResolver(NewJobFormSchema),
+    defaultValues : { 
+      device : "",
+      price : 0,
+      date : new Date(),
+      description : "",
+    }
+  })
 
   return (
     <form 
@@ -23,7 +44,7 @@ export function NewJobForm () {
 
       />
       <Input 
-        IType="text"
+        IType="number"
         icon={Coins}
         label='Valor do conserto'
         name='price'
@@ -31,18 +52,21 @@ export function NewJobForm () {
         
       />
       <Input 
-        IType="text"
-        icon={CaseSensitive}
-        label='Nome do dispositivo'
-        name='device'
-        placeholder='Nome do dispositivo'
-        
+        IType="date"
+        icon={CalendarCheck}
+        label='Data de entrega'
+        name='delivery'
+        placeholder='Data de entrega'
       />
-
+      <textarea 
+        className='p-2 resize-none bg-transparent border dark:border-zinc-800 border-zinc-300 rounded-md shadow-md min-h-20'
+        placeholder='Descrição relatando os problemas'
+      />
       <button 
         type='submit'
         className=' disabled:opacity-5 m-2 disabled:cursor-not-allowed flex items-center justify-center bg-transparent text-zinc-950 dark:text-zinc-300 rounded-md p-2 flex-end hover:bg-zinc-200  dark:hover:bg-zinc-800/90 transition duration-200 border dark:border-zinc-800 border-zinc-300  shadow-lg'
         >
+
         <PenLine size={24} /> Generate
       </button> 
 

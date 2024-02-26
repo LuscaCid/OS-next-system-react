@@ -368,8 +368,7 @@
       "description": "Tela quebrada, dispositivo não liga.",
       "tag": "tela quebrada",
       "device": "Samsung Galaxy S20"
-    }
-    ,
+    },
     {
       "id": "238412",
       "client_id": 1,
@@ -378,8 +377,7 @@
       "description": "Tela quebrada, dispositivo não liga.",
       "tag": "tela quebrada",
       "device": "Samsung Galaxy S20"
-    }
-    ,
+    },
     {
       "id": "234912",
       "client_id": 1,
@@ -388,7 +386,51 @@
       "description": "Tela quebrada, dispositivo não liga.",
       "tag": "tela quebrada",
       "device": "Samsung Galaxy S20"
+    },
+    {
+      "id": "aff6",
+      "client_id": "19",
+      "arrived_at": "Mon, 26 Feb 2024 12:38:09 GMT",
+      "customer_name": "Samuel Adams",
+      "description": "problemas correlatos ao display",
+      "tag": "display",
+      "device": "Xiamo "
+    },
+    {
+      "id": "9b11",
+      "client_id": "4",
+      "arrived_at": "Mon, 26 Feb 2024 12:39:12 GMT",
+      "customer_name": "Diana Miller",
+      "description": "dwas",
+      "tag": "dwa",
+      "device": "dwa"
+    },
+    {
+      "id": "f2d0",
+      "client_id": "4",
+      "arrived_at": "Mon, 26 Feb 2024 12:39:36 GMT",
+      "customer_name": "Diana Miller",
+      "description": "dwasd",
+      "tag": "dwa",
+      "device": "dwa"
+    },
+    {
+      "id": "092b",
+      "client_id": "1",
+      "arrived_at": "Mon, 26 Feb 2024 13:04:09 GMT",
+      "customer_name": "Alice Smith",
+      "description": "dasdwas",
+      "tag": "eita ",
+      "device": "Xiamo "
+    },
+    {
+      "id": "309b",
+      "client_id": "4",
+      "arrived_at": "Mon, 26 Feb 2024 13:08:47 GMT",
+      "customer_name": "Diana Miller",
+      "description": "wada",
+      "tag": "dwad",
+      "device": "dawd"
     }
-    
   ]
 }

@@ -1,21 +1,23 @@
 import { LucideIcon } from "lucide-react"
+import { useFormContext } from "react-hook-form"
 
 interface InputProps {
   IType : "text" | "number" | "date" 
-  placeholder : string
+  input_placeholder : string
   icon : LucideIcon
-  label : string
-  name : string
+  input_name : string
 }
-export default function Input ({ IType,icon : Icon,label,placeholder, name } : InputProps) {
+export default function Input ({ IType,icon : Icon,input_placeholder, input_name } : InputProps) {
+  const {register} = useFormContext()
+  
   return (
-    <div className="relative h-12  m-2 flex items-center gap-2 border dark:border-zinc-800 border-zinc-300 rounded-md shadow-sm ">
-        <label htmlFor={name} className="sr-only">{label}</label>
+    <div className="relative h-12  mx-2 flex items-center gap-1 border dark:border-zinc-800 border-zinc-300 rounded-md shadow-sm ">
+        
         {Icon && <Icon className="ml-1" size={24}/>}
         <input
-          placeholder={placeholder} 
-          name={name}
-          id={name}
+          placeholder={input_placeholder} 
+          {...register(input_name)}
+          id={input_placeholder}
           className="bg-transparent w-full pl-8 h-full absolute"
           type={IType} 
         />     

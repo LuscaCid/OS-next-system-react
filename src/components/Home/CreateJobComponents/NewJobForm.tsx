@@ -1,5 +1,5 @@
 
-import { Coins, Smartphone, PenBox, PenLine, CalendarCheck, Variable} from 'lucide-react'
+import { Coins, Smartphone, PenBox, PenLine} from 'lucide-react'
 import Input from "../CreateJobComponents/Input";
 import { useForm, FormProvider } from 'react-hook-form'
 
@@ -8,7 +8,7 @@ import { AddNewJobMutationType, NewJobFormSchema, NewJobFormSchemaType, UsersPro
 import { SelectClientSection } from './SelectClientSection';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { IHistoryData, IRenderHistoryProps } from '@/@types/HistoryData';
+import { IHistoryData } from '@/@types/HistoryData';
 
 export function NewJobForm () {
 

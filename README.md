@@ -40,9 +40,18 @@ export default function Home (){
 
   const { mutateAsync : addPostMutation } = useMutation({
     mutationFn : addPost,
-    onSuccess : () => {
+    onSuccess : (_, variables) => {
       queryClient.invalidateQueries({queryKey : ['home']})
-    },
+      //outra abordagem é setar o cache nesta funcao de onSuccess
+      queryClient.setQueryData(["home"], (state) =>{
+         return [...state, {
+           date : variables.date,
+           slug : variables.slug,
+           tilte : variables.title
+        }]
+      })
+
+},
     onError : () => {
       alert('try again later')
     } 

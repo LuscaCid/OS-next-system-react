@@ -13,7 +13,7 @@ export default function JobsHistory () {
           onChange={(e) => setQuery(e.target.value)}
         />
         
-        <div className=" border-t border-b w-full h-screen overflow-y-auto border-zinc-300 dark:border-zinc-800  rounded-md m-2 flex flex-col gap-2 pr-1 min-h-[550px] max-h-[520px]">           
+        <div className=" border-t border-b w-full h-screen overflow-y-auto border-zinc-300 dark:border-zinc-800  rounded-md m-2 flex flex-col gap-2 pr-1 md:max-h-[410px] max-h-[640px]">           
          <HistoryFetchAndRendering query={query}/>
          
       </div> 

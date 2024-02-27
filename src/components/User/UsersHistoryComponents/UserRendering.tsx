@@ -7,21 +7,21 @@ interface Props {
     UserHistory : ClientDataRendering [] | undefined
 }
 
-export function HistoryRender({query, UserHistory} : Props) {
+export function UsersRendering({query, UserHistory} : Props) {
 
     const [displayUserHistory, setDisplayUserHistory] = useState<ClientDataRendering [] | undefined>(UserHistory)
 
     useEffect(() => {
         
-        if(UserHistory){
+        if(displayUserHistory){
           setDisplayUserHistory(displayUserHistory.filter((element : ClientDataRendering) => {
-                const description = element.description.toLowerCase()
-                const name = element.customer_name.toLowerCase()
-                const device = element.device.toLowerCase()
+                const name = element.name.toLowerCase()
+                const email = element.email.toLowerCase()
+                const phone = element.phone.toLowerCase()
 
-                if(description.includes(query.toLowerCase()))return element
+                if(email.includes(query.toLowerCase()))return element
                 if(name.includes(query.toLowerCase()))return element
-                if(device.includes(query.toLowerCase()))return element
+                if(phone.includes(query.toLowerCase()))return element
             }))
             
         }
@@ -30,15 +30,14 @@ export function HistoryRender({query, UserHistory} : Props) {
     return (
         <>
             {
-            displayJobsHistory!.length > 0 &&  displayJobsHistory!.map((element : IHistoryData) => {
+            displayUserHistory!.length > 0 &&  displayUserHistory!.map((element : ClientDataRendering) => {
               return (
                 <UserBox 
                   key={element.id}
-                  arrived_at={element.arrived_at}
-                  customer_name={element.customer_name}
-                  description={element.description}
-                  device={element.device}
-                  tag={element.tag}
+                  email={element.email}
+                  phone={element.phone}
+                  name={element.name}
+                  created_at= {element.created_at}
                 />
               )
             })

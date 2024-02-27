@@ -2,7 +2,8 @@ import { ClientDataRendering } from '@/@types/Users'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 
-export function UserBox({ name , email,  created_at, zipcode } : ClientDataRendering){
+
+export function UserBox({ name , email,  created_at, phone } : ClientDataRendering){
     
     const formattedDate = formatDistanceToNow(created_at, {
         addSuffix : true,
@@ -18,8 +19,8 @@ export function UserBox({ name , email,  created_at, zipcode } : ClientDataRende
             <span className='text-zinc-600 dark:text-zinc-400 font-semibold'>
                 {email}
             </span>
-            <footer className='w-fit px-2 py-1 bg-zinc-950 dark:bg-zinc-200  dark:text-zinc-950 font-bold text-zinc-100 rounded-md cursor-pointer'>
-                {zipcode}
+            <footer className='text-zinc-400 dark:text-zinc-400 font-semibold'>
+                {phone}
             </footer>
         </div>
     )

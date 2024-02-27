@@ -6,6 +6,7 @@ export interface ClientDataFromBackend {
     created_at : string
     updated_at : string
     address : string
+    phone : string
     address : {
         street : string
         number : string
@@ -18,14 +19,9 @@ export interface ClientDataFromBackend {
 }
 
 export interface ClientDataRendering  {
-    id : string
+    id? : string
     name : string
     email : string
-    cpf : string
     created_at : string
-    street : string
-    number : string
-    city : string
-    state : string
-    zipcode : string
+    phone : string
 }

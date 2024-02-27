@@ -1,22 +1,22 @@
-import { IHistoryData } from "@/@types/HistoryData"
 import { useQuery } from "@tanstack/react-query"
 import LoadingHistory from "./loading"
-import { HistoryRender } from "./HistoryRendering"
+import { UsersRendering } from "./UserRendering"
+import { ClientDataRendering } from "@/@types/Users"
 
 interface Props {
   query : string
 }
 
-export function HistoryFetchAndRendering({query} : Props) {
+export function UserFetch({query} : Props) {
 
-  const {isLoading, data : JobsHistory, isError } = useQuery({
+  const {isLoading, data : UsersHistory, isError } = useQuery({
     queryFn : () => fetchHistory(),
-    queryKey : ["history"],
+    queryKey : ["UsersHistory"],
   })
 
   async function fetchHistory () {  
-    const response = await fetch('http://localhost:3000/orders')
-    let data : IHistoryData [] = await response.json()
+    const response = await fetch('http://localhost:3000/clients')
+    let data : ClientDataRendering [] = await response.json()
     return data
   }
 
@@ -34,7 +34,7 @@ export function HistoryFetchAndRendering({query} : Props) {
 
   return (
     <>
-      <HistoryRender JobsHistory={JobsHistory} query={query}/>
+      <UsersRendering UserHistory={UsersHistory} query={query}/>
     </>
   )
 

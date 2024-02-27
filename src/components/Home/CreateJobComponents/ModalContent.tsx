@@ -3,15 +3,17 @@ import { UsersProperties } from '@/@types/CreateJob'
 import * as Dialog from '@radix-ui/react-dialog'
 import { X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 interface Props {
     handleSelectUser : (userSelected : UsersProperties) => void
 }
 export function ModalContent ({handleSelectUser} : Props) { 
+    const navigate = useNavigate()
     const [query, setQuery] = useState<string>('')
     const [usersFound, setUsersFound] = useState<UsersProperties[]>()
-
+    
     async function fetchUser() {
         const response = await fetch('http://localhost:3000/clients')
         const data : UsersProperties [] = await response.json()
@@ -84,6 +86,15 @@ export function ModalContent ({handleSelectUser} : Props) {
                         </span>)
                     } 
                 </section>
+                <footer  className='w-full flex flex-col items-center'>
+                    <span className='mx-auto  dark:text-zinc-600 text-zinc-300'>or</span>
+                    <button
+                        className='rounded-sm w-full p-2 bg-transparent border border-zinc-300 dark:border-zinc-800/80 hover:bg-zinc-200 transition duration-200 dark:hover:bg-zinc-700/80 dark:text-zinc-300 font-bold text-lg text-zinc-500'
+                        onClick={() => navigate('/user')}    
+                    >
+                        Register a new customer
+                    </button>
+                </footer>
             </Dialog.Content>
         </Dialog.Portal>
         

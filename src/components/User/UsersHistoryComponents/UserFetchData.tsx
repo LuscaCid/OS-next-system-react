@@ -16,7 +16,8 @@ export function UserFetch({query} : Props) {
 
   async function fetchHistory () {  
     const response = await fetch('http://localhost:3000/clients')
-    let data : ClientDataRendering [] = await response.json()
+    const data : ClientDataRendering [] = await response.json()
+    console.log(data)
     return data
   }
 

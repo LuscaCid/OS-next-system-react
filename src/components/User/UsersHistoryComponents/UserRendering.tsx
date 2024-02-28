@@ -3,7 +3,7 @@ import { UserBox } from "./UserBox"
 import { useEffect, useState } from "react"
 
 interface Props {
-    query : string
+    query : string 
     UserHistory : ClientDataRendering [] | undefined
 }
 
@@ -14,19 +14,14 @@ export function UsersRendering({query, UserHistory} : Props) {
     useEffect(() => {
         
         if(displayUserHistory){
-          setDisplayUserHistory(displayUserHistory.filter((element : ClientDataRendering) => {
+          setDisplayUserHistory(UserHistory!.filter((element : ClientDataRendering) => {
                 const name = element.name.toLowerCase()
                 const email = element.email.toLowerCase()
-                const phone = element.phone.toLowerCase()
-
                 if(email.includes(query.toLowerCase()))return element
                 if(name.includes(query.toLowerCase()))return element
-                if(phone.includes(query.toLowerCase()))return element
-            }))
-            
+          }))
         }
-    }, [query])
-
+    }, [query]) 
     return (
         <>
             {
@@ -43,6 +38,5 @@ export function UsersRendering({query, UserHistory} : Props) {
             })
           }
         </>
-        
     )
 }

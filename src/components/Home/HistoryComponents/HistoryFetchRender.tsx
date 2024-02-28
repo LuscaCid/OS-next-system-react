@@ -14,9 +14,10 @@ export function HistoryFetchAndRendering({query} : Props) {
     queryKey : ["history"],
   })
 
+
   async function fetchHistory () {  
     const response = await fetch('http://localhost:3000/orders')
-    let data : IHistoryData [] = await response.json()
+    const data : IHistoryData [] = await response.json()
     return data
   }
 

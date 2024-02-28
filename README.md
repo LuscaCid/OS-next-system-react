@@ -127,3 +127,14 @@ export default function Home (){
   )
 }
 ````
+
+type of some annotations in code.
+
+coding so much with libraries in this moment
+
+in this project im using 
+
+-react-router-dom, 
+-react-hook-form
+-tailwindcss
+-tanstack-react-query

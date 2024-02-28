@@ -7,7 +7,7 @@ const queryClient = new QueryClient()
 function App() {
  
   return (
-    <div className="h-screen overflow-auto p-1 text-zinc-950 bg-zinc-100 dark:bg-zinc-950 dark:text-zinc-200">
+    <div className="absolute inset-0 overflow-auto p-1 text-zinc-950 bg-zinc-100 dark:bg-zinc-950 dark:text-zinc-200">
       <SidebarContextProvider>
         <QueryClientProvider client={queryClient}>
           <AllRoutes />

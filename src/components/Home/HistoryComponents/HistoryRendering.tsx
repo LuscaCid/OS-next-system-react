@@ -25,7 +25,7 @@ export function HistoryRender({query, JobsHistory} : Props) {
             }))
             
         }
-    }, [query])
+    }, [query, JobsHistory])
 
     return (
         <>

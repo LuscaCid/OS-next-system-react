@@ -5,7 +5,7 @@ export function HistorySection () {
   
 
   return (
-    <section className="w-full border-b border-zinc-300 dark:border-zinc-800/80">
+    <section className="w-full relative border-b border-l-none border-zinc-300 dark:border-zinc-800/80 h-full">
       <h1 className=" p-2 flex items-center gap-2 text-3xl font-bold border border-t-0 border-l-0 border-r-0  border-zinc-300 dark:border-zinc-800 w-full">
         <div className="rounded-md border border-zinc-300 dark:border-zinc-800/80">
           <History size={24} />

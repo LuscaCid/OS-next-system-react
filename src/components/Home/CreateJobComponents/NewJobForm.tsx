@@ -2,26 +2,22 @@
 import { Coins, Smartphone, PenBox, PenLine} from 'lucide-react'
 import Input from "../CreateJobComponents/Input";
 import { useForm, FormProvider } from 'react-hook-form'
-
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AddNewJobMutationType, NewJobFormSchema, NewJobFormSchemaType, UsersProperties } from '../../../@types/CreateJob.d';
+import { NewJobFormSchema, NewJobFormSchemaType } from '../../../@types/CreateJob.d';
 import { SelectClientSection } from './SelectClientSection';
-import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { IHistoryData } from '@/@types/HistoryData';
+import { AddNewJob, GenCacheObject, generateObjectToSend } from '../../../Functions/newJobFunctions';
+import { NewJobFormReducerObject } from "../../../reducers/NewJobForm";
 
 export function NewJobForm () {
 
-  const [userSelected, setUserSelected] = useState<UsersProperties | null>(null)
+  const { 
+    userSelected,
+    handleSelectUser,
+    handleRemoveUserSelected 
+  } = NewJobFormReducerObject()
  
-  function handleRemoveUserSelected() {
-    setUserSelected(null)
-  }
-
-  function handleSelectUser(userSelected : UsersProperties) {
-    setUserSelected(userSelected)
-  }
-
   const newJobFormProps = useForm<NewJobFormSchemaType>({
     resolver : zodResolver(NewJobFormSchema),
     defaultValues : { 
@@ -35,75 +31,34 @@ export function NewJobForm () {
 
   const queryClient = useQueryClient()
 
-  function GenCacheObject(variables :  AddNewJobMutationType){
-    return {
-      device : variables.device,
-      price : variables.price,
-      description : variables.description,
-      arrived_at : new Date().toUTCString(),
-      customer_name : variables.userSelected.name,
-      tag : variables.tag,
-      id : Math.ceil(Math.random() * 3000),
-      client_id : variables.userSelected.id
-    }
-  }
-
-  const {mutateAsync: addNewJobMutation} = useMutation({
+  const { mutateAsync: addNewJobMutation } = useMutation({
     mutationFn : AddNewJob,
     onSuccess : (_ ,variables) => {
-      const cached = queryClient.getQueryData(['history'])
-      console.log(cached)
-
       queryClient.setQueryData(['history'], 
       (state : IHistoryData []) => [GenCacheObject(variables), ...state ])
-      
+      reset()
     }
   })
-  async function AddNewJob(newJobFnData : AddNewJobMutationType) {
-    try {
-      const objectToSend = {
-        client_id : newJobFnData.userSelected.id,
-        arrived_at : new Date().toUTCString(),
-        customer_name : newJobFnData.userSelected.name,
-        description :newJobFnData.description,
-        tag : newJobFnData.tag,
-        device : newJobFnData.device
-      }
-      await fetch('http://localhost:3000/orders', {
-        body : JSON.stringify(objectToSend),
-        method : "POST"
-      })
-      reset()
-    } catch(err : unknown) {
-      alert(err)
-      console.log(err)
-    }
-    
-  }
+  
   async function handleSubmitForm(data : NewJobFormSchemaType) {
+    const isAllFilled = data.description && data.tag && data.device && data.price
+    const newJobMutationObject = generateObjectToSend(data, userSelected)
 
-    const newJobMutationObject : AddNewJobMutationType = {
-      tag : data.tag,
-      description : data.description,
-      device : data.device,
-      price : data.price,
-      userSelected : {
-        cpf : userSelected?.cpf,
-        id : userSelected?.id,
-        name : userSelected?.name
-      } as UsersProperties
+    if(isAllFilled && userSelected?.name) {
+      await addNewJobMutation(newJobMutationObject)
+      handleRemoveUserSelected()
     }
-
-    await addNewJobMutation(newJobMutationObject)
+    else return alert('todos os campos do formulario precisam ser preenchidos!')
   }
   return (
     <FormProvider {...newJobFormProps}>
       <form 
-      onSubmit={handleSubmit(handleSubmitForm)}
-      className=" border flex-1 border-zinc-300 dark:border-zinc-800/80 rounded-md m-2 flex flex-col gap-1"
-    >
-      <h1 className='border-b p-1 dark:text-zinc-300 dark:border-zinc-800 border-zinc-300 w-full pb-1 text-xl text-zinc-800 font-bold  flex justify-between items-center'>
-        Type some info to create a new Job <PenBox size={32} />
+        onSubmit={handleSubmit(handleSubmitForm)}
+        className=" border flex-1 border-zinc-300 dark:border-zinc-800/80 rounded-md m-2 flex flex-col gap-1"
+      >
+      <h1 
+        className='border-b p-1 dark:text-zinc-300 dark:border-zinc-800 border-zinc-300 w-full pb-1 text-xl text-zinc-800 font-bold  flex justify-between items-center'>
+        Create a new Job <PenBox size={32} />
       </h1>
       
       <Input 
@@ -141,8 +96,7 @@ export function NewJobForm () {
       <button 
         type='submit'
         className=' disabled:opacity-5 m-2 disabled:cursor-not-allowed flex items-center justify-center bg-transparent text-zinc-950 dark:text-zinc-300 rounded-md p-2 flex-end hover:bg-zinc-200  dark:hover:bg-zinc-800/90 transition duration-200 border dark:border-zinc-800 border-zinc-300  shadow-lg'
-        >
-
+      >
         <PenLine size={24} /> Generate
       </button> 
 

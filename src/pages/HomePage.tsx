@@ -5,7 +5,7 @@ import { CreateJobSection } from "../components/Home/CreateJobComponents/CreateJ
 
 export default function Home(){//history side and create an job side
   return (
-    <div className="  md:flex-row w-full  flex flex-col ">
+    <div className=" flex-row w-full  flex h-full">
         <HistorySection />
         <CreateJobSection />
     </div>

@@ -1,5 +1,3 @@
-import * as Dialog from '@radix-ui/react-dialog'
-import { ThemeTriggerButton } from './ThemeTrigger'
 import { MouseEvent, useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 
@@ -42,26 +40,20 @@ export function ChangeTheme() {
         }
     }, [actualTheme])
     return (
-        <Dialog.Root>
-            <ThemeTriggerButton currentTheme = {actualTheme}/>
-            <Dialog.Overlay/>
-            <Dialog.Content className='flex flex-col gap-1 rounded-md border  border-zinc-300 p-2 dark:border-zinc-900 shadow-md'>     
-                <button 
-                    onClick={handleSwitchTheme}
-                    name='light' 
-                    className='hover:bg-zinc-200 transition duration-200 rounded-md flex px-2 dark:hover:bg-zinc-800/80 justify-between'>
-                    light <Sun size={20} />
-                </button>
-        
-            
-                 <button 
-                    onClick={handleSwitchTheme}
-                    name='dark' 
-                    className='hover:bg-zinc-200 transition duration-200 rounded-md flex px-2 dark:hover:bg-zinc-800/80 justify-between'>
-                    dark <Moon size={20} />
-                </button>
+    <>
+        <button 
+            onClick={handleSwitchTheme}
+            name='light' 
+            className='hover:bg-zinc-200 transition duration-200 rounded-md flex px-1 border border-zinc-300  dark:border-zinc-800/80  items-center dark:hover:bg-zinc-800/80 justify-between'>
+            light <Sun size={20} />
+        </button>
 
-            </Dialog.Content>
-        </Dialog.Root>
+            <button 
+            onClick={handleSwitchTheme}
+            name='dark' 
+            className='hover:bg-zinc-200 transition duration-200 rounded-md flex px-1 border border-zinc-300  dark:border-zinc-800/80 items-center dark:hover:bg-zinc-800/80 justify-between'>
+            dark <Moon size={20} />
+        </button>
+        </>
     )
-}
+}  

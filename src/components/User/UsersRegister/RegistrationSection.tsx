@@ -39,7 +39,7 @@ export default function RegistrationSection(){
     }
   })
 
-  const { handleSubmit, reset, formState: { isSubmiting } } = useFormProperties
+  const { handleSubmit, reset, formState: { isSubmiting } } = useFormProperties //changing this...
   return (
     <div className="w-full ">
       <div className="p-2 border-b border-l-0 border-zinc-300 dark:border-zinc-800/80">
@@ -81,12 +81,7 @@ export default function RegistrationSection(){
               input_name="name"
               input_placeholder="Nome do cliente"
             />
-
-
-
           </div>
-          
-
         </form>
       </FormProvider>
       

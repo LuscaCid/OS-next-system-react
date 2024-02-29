@@ -6,7 +6,7 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 export function UserBox({ name , email,  created_at, phone } : ClientDataRendering){
     
     const formattedDate = formatDistanceToNow(created_at, {
-        addSuffix : true,
+        addSuffix : false,
         locale : ptBR 
     })
 

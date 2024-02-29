@@ -13,7 +13,7 @@ export function HistorySection () {
           History
         </h1>
         
-        <div className=" border-zinc-300 dark:border-zinc-800  rounded-md m-2 flex flex-col gap-2   ">           
+        <div className=" border-zinc-300 dark:border-zinc-800  rounded-md m-1 flex flex-col gap-2   ">           
           <JobsHistory />
         </div>     
     </section> 

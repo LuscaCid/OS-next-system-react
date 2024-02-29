@@ -57,7 +57,7 @@ export function NewJobForm () {
         className=" border flex-1 border-zinc-300 dark:border-zinc-800/80 rounded-md m-2 flex flex-col gap-1"
       >
       <h1 
-        className='border-b p-1 dark:text-zinc-300 dark:border-zinc-800 border-zinc-300 w-full pb-1 text-xl text-zinc-800 font-bold  flex justify-between items-center'>
+        className='bg-zinc-200 dark:bg-zinc-800/80 rounded-sm border-b p-1 dark:text-zinc-300 dark:border-zinc-800 border-zinc-300 w-full pb-1 text-xl text-zinc-800 font-bold  flex justify-between items-center'>
         Create a new Job <PenBox size={32} />
       </h1>
       

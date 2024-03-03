@@ -27,7 +27,8 @@ export function UsersRendering({query, UserHistory} : Props) {
             {
             displayUserHistory!.length > 0 &&  displayUserHistory!.map((element : ClientDataRendering) => {
               return (
-                <UserBox 
+                <UserBox
+                  id={element.id}
                   key={element.id}
                   email={element.email}
                   phone={element.phone}

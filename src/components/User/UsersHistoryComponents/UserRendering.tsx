@@ -21,7 +21,7 @@ export function UsersRendering({query, UserHistory} : Props) {
                 if(name.includes(query.toLowerCase()))return element
           }))
         }
-    }, [query]) 
+    }, [query, UserHistory]) 
     return (
         <>
             {

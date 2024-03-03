@@ -21,7 +21,7 @@ const formSchemaRegistration = z.object({
   }),
 })
 
-type ClientToSendToDatabase = {
+export type ClientToSendToDatabase = {
   name : string
   email : string
   cpf : string
@@ -46,7 +46,7 @@ type ApiCepResponse = {
 }
 export default function RegistrationSection(){
 
-  const useFormProperties = useForm<FormSchemaType>({
+  const useFormProperties = useForm<FormSchemaType>({//criacao de um formulario de edicao que vai receber as modificacoes advindas d
     resolver : zodResolver(formSchemaRegistration),
     defaultValues : {
       name : "",

@@ -11,7 +11,7 @@ export function UserBox({ name , email,  created_at, phone, id } : ClientDataRen
     })
     const navigate = useNavigate()
     function handleClickInClient () {
-        navigate(`/clientdetails?id=${id}`)
+        navigate(`/clientdetails?id=${id}&name=${name}`)
     }
     return (
         <div onClick={handleClickInClient} className='flex flex-col gap-2 p-2 bg-transparent border dark:border-zinc-800  border-zinc-300 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800/80 transtion duration-200 shadow-md'>

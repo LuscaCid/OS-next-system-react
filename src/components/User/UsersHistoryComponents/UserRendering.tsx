@@ -11,16 +11,14 @@ export function UsersRendering({query, UserHistory} : Props) {
 
     const [displayUserHistory, setDisplayUserHistory] = useState<ClientDataRendering [] | undefined>(UserHistory)
 
-    useEffect(() => {
+    useEffect(() => {  
+      setDisplayUserHistory(UserHistory!.filter((element : ClientDataRendering) => {
+        const name = element.name.toLowerCase()
+        const email = element.email.toLowerCase()
+        if(email.includes(query.toLowerCase()))return element
+        if(name.includes(query.toLowerCase()))return element
+      }))
         
-        if(displayUserHistory){
-          setDisplayUserHistory(UserHistory!.filter((element : ClientDataRendering) => {
-                const name = element.name.toLowerCase()
-                const email = element.email.toLowerCase()
-                if(email.includes(query.toLowerCase()))return element
-                if(name.includes(query.toLowerCase()))return element
-          }))
-        }
     }, [query, UserHistory]) 
     return (
         <>

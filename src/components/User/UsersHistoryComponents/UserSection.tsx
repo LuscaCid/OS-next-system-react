@@ -9,10 +9,10 @@ export function UsersSection () {
         <div className="rounded-md border border-zinc-300 dark:border-zinc-800/80">
           <History size={24} />
         </div>
-          Historico de clientes
+          Historico
         </h1>
         
-        <div className=" border-zinc-300 absolute inset-0 top-14 dark:border-zinc-800  rounded-md m-2 flex flex-col gap-2  ">           
+        <div className=" border-zinc-300 absolute inset-0 top-12 dark:border-zinc-800  rounded-md m-2 flex flex-col gap-2  ">           
           <UsersHistory />
 
         </div>     

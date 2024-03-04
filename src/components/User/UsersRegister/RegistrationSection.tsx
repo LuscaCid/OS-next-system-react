@@ -157,7 +157,7 @@ export default function RegistrationSection(){
     }
   }, [data, isSuccess, isError])
   return (
-    <div className="w-full overflow-y-auto max-h-full">
+    <div className="relative w-full overflow-y-auto max-h-full">
       <div className="p-2 border-b border-l-0 border-zinc-300 dark:border-zinc-800/80">
         <h1 className='flex items-center gap-2 text-2xl font-bold'> 
           <div className="w-7 h-7 rounded-md border flex items-center justify-center border-zinc-300 dark:border-zinc-800/80">
@@ -170,14 +170,14 @@ export default function RegistrationSection(){
       <FormProvider {...useFormProperties}>
         <form 
         onSubmit={handleSubmit(handleSubmitForm)}
-          className=" w-full p-2 rounded-md"
+          className="absolute inset-0 top-12 bottom-12 w-full p-2 rounded-md"
         >
           <legend>
             <h1 className="text-xl font-bold mb-2 bg-zinc-200 dark:bg-zinc-800/80 rounded-sm p-1">
               Preencha os campos
             </h1>
           </legend>
-          <div className="w-full items-center justify-between max-h-screen h-full overflow-auto flex flex-col gap-2  md:gap-1 md:grid md:grid-cols-2 md:grid-flow-row">
+          <div className="w-full items-center  overflow-auto flex flex-col gap-2 md:grid md:grid-cols-2">
             <InputSection 
               input_label="Nome"
               input_name="name"
@@ -236,7 +236,7 @@ export default function RegistrationSection(){
             
           </div>
           <button
-            className=" flex mt-2 items-center justify-center gap-2 w-full p-2 rounded-md bg-transparent border border-zinc-300 dark:border-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 transition duration-200"
+            className=" flex my-2 items-center justify-center gap-2 w-full p-2 rounded-md bg-transparent border border-zinc-300 dark:border-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-800/80 transition duration-200"
             type="submit"
 
           >

@@ -1,7 +1,7 @@
 import { api } from "../service/api"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { Check, Loader, Pencil, X } from "lucide-react"
-import { useSearchParams } from "react-router-dom"
+import { ArrowLeft, Check, Loader, Pencil, X } from "lucide-react"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import type { ClientToSendToDatabase } from "../components/User/UsersRegister/RegistrationSection"
 import InputWithData from "../components/User/UserDetails/InputWithData"
 import { FormProvider, useForm } from "react-hook-form"
@@ -26,7 +26,7 @@ const formSchemaEdition = z.object({
   
 type FormSchemaEdtionType = z.infer<typeof formSchemaEdition>
 export function ClientDetails () {
-    
+    const navigate = useNavigate()
     const queryClient = useQueryClient()
     const [searchParams] = useSearchParams()
 
@@ -53,15 +53,15 @@ export function ClientDetails () {
     }
 
     const { mutateAsync : UpdateChangesMutation } = useMutation({
-        mutationFn : updateUser,
+        mutationFn : updateClient,
         onSuccess : () => {
-            queryClient.invalidateQueries({queryKey : ["user-data"]})
+            queryClient.invalidateQueries({queryKey : ["client-data"]})
             return alert("Mudancas salvas com Sucesso!")
         },
         onError : (error) => console.log(error)
     })
 
-    async function updateUser (data : FormSchemaEdtionType) {
+    async function updateClient (data : FormSchemaEdtionType) {
         const id = searchParams.get("id")
         console.log(id)
         const response = await api.put(`/clients/${id}`, data)
@@ -205,7 +205,11 @@ export function ClientDetails () {
                     
                 </form>
             </FormProvider>
-
+            <button 
+                onClick={() => navigate(-1)}
+                className="absolute bottom-2 flex items-center gap-1 left-2 rounded-sm bg-transparent hover:bg-zinc-200 dark:hover:bg-zinc-900 dark:bg-zinc-800 border transition duration-200 border-zinc-300 dark:border-zinc-900 p-2">
+                <ArrowLeft size={24}/> <span>voltar</span>
+            </button>
         </main>
     )     
 

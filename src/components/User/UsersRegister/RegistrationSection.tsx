@@ -117,10 +117,11 @@ export default function RegistrationSection(){
     try {
       response = await api.post("/clients", data)
       return response
-    } catch (err : any) {
-      if(err.message)alert(err.message)
-      else alert(err)
-      return err
+    } catch (err : unknown) {
+      
+        if(err instanceof Error)alert(err.message)
+      
+        else alert(err)
     }
   }
 
